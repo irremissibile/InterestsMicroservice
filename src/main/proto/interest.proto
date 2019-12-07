@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+option java_generic_services = true;
+option java_package = "interest";
+
+
+message AddUserInterestRequest {
+    string username = 1;
+    string interest = 2;
+}
+
+message AddUserInterestResponse {
+    bool success = 1;
+}
+
+
+message DeleteUserInterestRequest {
+    string username = 1;
+    string interest = 2;
+}
+
+message DeleteUserInterestResponse {
+    bool success = 1;
+}
+
+
+message GetUserInterestsRequest {
+    string username = 1;
+}
+
+message GetUserInterestsResponse {
+    repeated string interests = 1;
+}
+
+
+message GetPopularInterestsRequest {}
+
+message GetPopularInterestsResponse {
+    repeated string interests = 1;
+}
+
+
+
+service InterestService {
+    rpc GetUserInterests(GetUserInterestsRequest) returns (GetUserInterestsResponse);
+    rpc AddUserInterest(AddUserInterestRequest) returns (AddUserInterestResponse);
+    rpc DeleteUserInterest(DeleteUserInterestRequest) returns (DeleteUserInterestResponse);
+    rpc GetPopularInterests(GetPopularInterestsRequest) returns (GetPopularInterestsResponse);
+}
